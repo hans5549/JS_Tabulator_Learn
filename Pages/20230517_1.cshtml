@@ -1,0 +1,32 @@
+<table class="table">
+    <caption class="caption">九九乘法表格</caption>
+    <thead >
+        <tr>
+            @{
+                for (int c = 0; c < Cols; c++)
+                {
+                    <th>@val[0, c]</th>
+                }
+            }
+        </tr>
+    </thead>
+    @{ 
+        for(int r=1;r<Rows;r++)
+        {
+    <tr>
+        @{
+            for (int c = 0; c < Cols; c++)
+            {
+                if (c > 0)
+                {
+                    <td>@val[r, c]</td> }
+                else
+                {
+                    <th>@val[r, c]</th> }
+
+            }
+        }
+    </tr>
+        }
+    }
+</table>
