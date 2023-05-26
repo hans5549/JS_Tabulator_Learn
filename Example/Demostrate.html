@@ -27,6 +27,11 @@
         var table = new Tabulator("#example-table", {
             data: tabledata,
             layout: "fitColumns",
+
+            // ===
+            // 擴充 
+            // ===
+
             columns:[
                 {title:"Name", field:"name", width:200},
                 {title:"Progress", field:"progress", width:100, sorter:"number"},

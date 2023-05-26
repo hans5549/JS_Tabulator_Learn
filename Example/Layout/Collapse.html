@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Tabulator</title>
+        <title>Collaose</title>
 	    <meta name="viewport" content="width=device-width">
         <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
         <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
@@ -29,8 +29,8 @@
             layout:"fitDataFill",
             responsiveLayout:"collapse",
             columns:[
-                {formatter:"responsiveCollapse", width:30, minWidth:30, hozAlign:"center", resizable:false, headerSort:false},
-                {title:"Name", field:"name", width:200, responsive:0},
+                {formatter:"responsiveCollapse"},
+                {title:"Name", field:"name", width:200},
                 {title:"Progress", field:"progress", hozAlign:"right", sorter:"number", width:150},
                 {title:"Gender", field:"gender", width:150, responsive:2},
                 {title:"Rating", field:"rating", hozAlign:"center", width:150},
