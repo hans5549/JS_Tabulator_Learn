@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Event - Sortable Auto FeedBack</title>
+	    <meta name="viewport" content="width=device-width">
+        <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+    </head>
+    <body>
+        <div id="example-table"></div>
+    </body>
+    <script>
+        // sample data
+        var tabledata = [
+            { id: 1, name: "Oli Bob", gender: "male", col: "red" },
+            { id: 2, name: "Mary May", gender: "female", col: "blue"},
+            { id: 3, name: "Christine Lobowski", gender: "female", col: "green" },
+            { id: 4, name: "Brendon Philips", gender: "male", col: "orange" },
+            { id: 5, name: "Margret Marmajuke", gender: "female", col: "yellow" },
+            { id: 6, name: "Frank Harbours", gender: "male", col: "red" },
+            { id: 7, name: "Jamie Newhart", gender: "male", col: "green"  },
+            { id: 8, name: "Gemma Jane", gender: "female", col: "red"  },
+            { id: 9, name: "Emily Sykes", gender: "female", col: "maroon"  },
+            { id: 10, name: "James Newman", gender: "male", col: "red" }
+        ];
+
+        var table = new Tabulator("#example-table", {
+            data: tabledata,
+            layout: "fitColumns",
+            movableRows: true,
+            columns:[
+                {formatter:"rownum", hozAlign:"center"},
+                {title:"Name", field:"name", sorter:"string"},
+                {title:"Gender", field:"gender", sorter:"string"},
+                {title:"Favorite Color", field:"col", sorter:"string", formatter:"color" },
+            ],
+        });
+
+        table.on("cellClick", function() {
+            var nameSortList = [];
+            var data = table.getData();
+            data.forEach(element => {
+                nameSortList.push(element.name);
+            });
+            alert(nameSortList);
+        });
+    </script>
+</html>

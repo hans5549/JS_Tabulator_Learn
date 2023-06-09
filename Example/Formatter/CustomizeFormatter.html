@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Formatter - Link</title>
+        <title>Formatter - CustomizeFormatter</title>
 	    <meta name="viewport" content="width=device-width">
         <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
         <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
@@ -10,6 +10,7 @@
     </head>
     <body>
         <div id="example-table"></div>
+        
     </body>
     <script>
         var tabledata = [
@@ -19,13 +20,12 @@
             { id: 4, name: "Youtube", url: "Youtube", imagePath: "https://www.youtube.com/img/desktop/yt_1200.png"}
         ];
 
-        //Generate print icon
-        var printIcon = function(cell, formatterParams){ //plain text value
-            return "<i class='fa fa-print'></i>";
-        };
-
-        var printCellClick = function(e, cell){
-            alert("Printing row data for: " + cell.getRow().getData().name);
+        var CustomizeFormatter = function(cell) {
+            const rowName = cell.getRow().getData().name;
+            const imagePath = cell.getRow().getData().imagePath;
+            return `<a href="https://www.google.com/search?q=${rowName}">
+                        <img width="50" height="50" src="${imagePath}"/>
+                    </a>`;
         };
 
         var table = new Tabulator("#example-table", {
@@ -35,8 +35,7 @@
             columns:[
                 {formatter:"rownum", hozAlign:"center"},
                 {title:"Query Name", field:"name"},
-                {title:"formatter: Link", field:"url", formatter:"link", formatterParams:{urlPrefix:'https://www.google.com/search?q='}},
-                {title:"formatter: Image", field:"imagePath",formatter:"image", hozAlign:"center", formatterParams:{height:'50px', width:'50px', urlPrefix:''}}
+                {title:"formatter: Link+Image", field:"url", formatter:CustomizeFormatter}
             ],
         });
     </script>
