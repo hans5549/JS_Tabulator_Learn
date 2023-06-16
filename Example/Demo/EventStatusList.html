@@ -14,7 +14,10 @@
         <br>
         <div>
             <button id="add-row">Add Blank Row to bottom</button>
+            <button id="history-undo">Undo Edit</button>
+            <button id="history-redo">Redo Edit</button>
         </div>
+        <br>
         <div id="example-table"></div>
     </body>
     <script>
@@ -25,6 +28,7 @@
         const table = new Tabulator('#example-table', {
             data: data,
             layout: "fitColumns",
+            history:true,
             columns: [
                 {formatter:"rownum", hozAlign:"center"},
                 {title:"狀態名稱", field: "eventStatusHant", headerFilter:"input", editor:"input"},
@@ -40,7 +44,17 @@
 
         //Add row on "Add Row" button click
         document.getElementById("add-row").addEventListener("click", function(){
-            table.addRow({});
+            table.addRow({eventStatusHant: "新資料", eventType: "案件事件-案件流程", eventStatusHans: "", eventStatusEn: "", eventStatusJa: "", isStopAlert: true, edit: 1, delete: 1});
+        });
+
+        //undo button
+        document.getElementById("history-undo").addEventListener("click", function(){
+        table.undo();
+        });
+
+        //redo button
+        document.getElementById("history-redo").addEventListener("click", function(){
+        table.redo();
         });
     </script>
 </html>
