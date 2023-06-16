@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Event Status List</title>
+	    <meta name="viewport" content="width=device-width">
+        <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+    </head>
+    <body>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div>
+            <button id="add-row">Add Blank Row to bottom</button>
+        </div>
+        <div id="example-table"></div>
+    </body>
+    <script>
+        const data = [
+            { id: 1, eventStatusHant: "已處理", eventType: "案件事件-案件流程", eventStatusHans: "", eventStatusEn: "", eventStatusJa: "", isStopAlert: true, edit: 1, delete: 1 }
+        ];
+
+        const table = new Tabulator('#example-table', {
+            data: data,
+            layout: "fitColumns",
+            columns: [
+                {formatter:"rownum", hozAlign:"center"},
+                {title:"狀態名稱", field: "eventStatusHant", headerFilter:"input", editor:"input"},
+                {title:"狀態類型", field: "eventType", headerFilter:"list", headerFilterParams:{values:["案件事件-案件流程", "案件事件-合約調閱", "專案事件"]}, editor:"list", editorParams:{values:["案件事件-案件流程", "案件事件-合約調閱", "專案事件"]} },
+                {title:"狀態簡體中文名稱", field: "eventStatusHans", headerFilter:"input", editor:"input"},
+                {title:"狀態英文名稱", field: "eventStatusEn", headerFilter:"input", editor:"input"},
+                {title:"狀態日文名稱", field: "eventStatusJa", headerFilter:"input", editor:"input"},
+                {title:"是否停止寄送警示信件", field: "isStopAlert", formatter:"tickCross", headerFilter:"tickCross",  headerFilterParams:{"tristate":true},headerFilterEmptyCheck:function(value){return value === null}, editor:true},
+                {title:"編輯", field: "edit"},
+                {title:"刪除", field: "delete"}
+            ],
+        })
+
+        //Add row on "Add Row" button click
+        document.getElementById("add-row").addEventListener("click", function(){
+            table.addRow({});
+        });
+    </script>
+</html>
